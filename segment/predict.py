@@ -1,10 +1,10 @@
-predict.py
-Yesterday
-Thu 11:21 PM
+# predict.py
+# Yesterday
+# Thu 11:21 PM
 
-You uploaded an item
-Text
-predict.py
+# You uploaded an item
+# Text
+# predict.py
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 """
 Run YOLOv5 segmentation inference on images, videos, directories, streams, etc.
