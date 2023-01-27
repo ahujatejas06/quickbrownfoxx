@@ -1,3 +1,10 @@
+plots.py
+Yesterday
+Thu 11:21 PM
+
+You uploaded an item
+Text
+plots.py
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 """
 Plotting utils
@@ -36,7 +43,8 @@ class Colors:
     def __init__(self):
         # hex = matplotlib.colors.TABLEAU_COLORS.values()
         hexs = ('FF3838', 'FF9D97', 'FF701F', 'FFB21D', 'CFD231', '48F90A', '92CC17', '3DDB86', '1A9334', '00D4BB',
-                '2C99A8', '00C2FF', '344593', '6473FF', '0018EC', '8438FF', '520085', 'CB38FF', 'FF95C8', 'FF37C7')
+               '2C99A8', '00C2FF', '344593', '6473FF', '0018EC', '8438FF', '520085', 'CB38FF', 'FF95C8', 'FF37C7')
+        # hexs=('FFFFFF')
         self.palette = [self.hex2rgb(f'#{c}') for c in hexs]
         self.n = len(self.palette)
 
@@ -115,7 +123,7 @@ class Annotator:
                             thickness=tf,
                             lineType=cv2.LINE_AA)
 
-    def masks(self, masks, colors, im_gpu, alpha=0.5, retina_masks=False):
+    def masks(self, masks, colors, im_gpu, alpha=1, retina_masks=False):
         """Plot masks at once.
         Args:
             masks (tensor): predicted masks on cuda, shape: [n, h, w]
