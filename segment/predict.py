@@ -1,3 +1,10 @@
+predict.py
+Yesterday
+Thu 11:21 PM
+
+You uploaded an item
+Text
+predict.py
 # YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 """
 Run YOLOv5 segmentation inference on images, videos, directories, streams, etc.
@@ -46,7 +53,7 @@ from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
 from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
                            increment_path, non_max_suppression, print_args, scale_boxes, scale_segments,
-                           strip_optimizer)
+                           strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.segment.general import masks2segments, process_mask, process_mask_native
 from utils.torch_utils import select_device, smart_inference_mode
@@ -182,18 +189,19 @@ def run(
                 # Write results
                 for j, (*xyxy, conf, cls) in enumerate(reversed(det[:, :6])):
                     if save_txt:  # Write to file
-                        seg = segments[j].reshape(-1)  # (n,2) to (n*2)
-                        line = (cls, *seg, conf) if save_conf else (cls, *seg)  # label format
+                        gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]
+                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
+                        line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
-                    if save_img or save_crop or view_img:  # Add bbox to image
-                        c = int(cls)  # integer class
-                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
-                        annotator.box_label(xyxy, label, color=colors(c, True))
-                        # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
-                    if save_crop:
-                        save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                    # if save_img or save_crop or view_img:  # Add bbox to image
+                    #     c = int(cls)  # integer class
+                    #     label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                    #     annotator.box_label(xyxy, label, color=colors(c, True))
+                    #     # annotator.draw.polygon(segments[j], outline=colors(c, True), width=3)
+                    # if save_crop:
+                    #     save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
             im0 = annotator.result()
