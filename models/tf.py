@@ -27,12 +27,12 @@ import torch
 import torch.nn as nn
 from tensorflow import keras
 
-from yolov5.models.common import (C3, SPP, SPPF, Bottleneck, BottleneckCSP, C3x, Concat, Conv, CrossConv, DWConv,
+from quickbrownfoxx.models.common import (C3, SPP, SPPF, Bottleneck, BottleneckCSP, C3x, Concat, Conv, CrossConv, DWConv,
                            DWConvTranspose2d, Focus, autopad)
-from yolov5.models.experimental import MixConv2d, attempt_load
-from yolov5.models.yolo import Detect, Segment
-from yolov5.utils.activations import SiLU
-from yolov5.utils.general import LOGGER, make_divisible, print_args
+from quickbrownfoxx.models.experimental import MixConv2d, attempt_load
+from quickbrownfoxx.models.yolo import Detect, Segment
+from quickbrownfoxx.utils.activations import SiLU
+from quickbrownfoxx.utils.general import LOGGER, make_divisible, print_args
 
 
 class TFBN(keras.layers.Layer):

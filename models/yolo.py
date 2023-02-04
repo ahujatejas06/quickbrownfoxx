@@ -21,12 +21,12 @@ if str(ROOT) not in sys.path:
 if platform.system() != 'Windows':
     ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-from yolov5.models.common import *
-from yolov5.models.experimental import *
-from yolov5.utils.autoanchor import check_anchor_order
-from yolov5.utils.general import LOGGER, check_version, check_yaml, make_divisible, print_args
-from yolov5.utils.plots import feature_visualization
-from yolov5.utils.torch_utils import (fuse_conv_and_bn, initialize_weights, model_info, profile, scale_img, select_device,
+from quickbrownfoxx.models.common import *
+from quickbrownfoxx.models.experimental import *
+from quickbrownfoxx.utils.autoanchor import check_anchor_order
+from quickbrownfoxx.utils.general import LOGGER, check_version, check_yaml, make_divisible, print_args
+from quickbrownfoxx.utils.plots import feature_visualization
+from quickbrownfoxx.utils.torch_utils import (fuse_conv_and_bn, initialize_weights, model_info, profile, scale_img, select_device,
                                time_sync)
 
 try:
