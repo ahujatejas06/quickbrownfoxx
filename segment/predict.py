@@ -42,14 +42,14 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-from models.common import DetectMultiBackend
-from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
-from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
+from quickbrownfoxx.models.common import DetectMultiBackend
+from quickbrownfoxx.utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
+from quickbrownfoxx.utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
                            increment_path, non_max_suppression, print_args, scale_boxes, scale_segments,
                            strip_optimizer, xyxy2xywh)
-from utils.plots import Annotator, colors, save_one_box
-from utils.segment.general import masks2segments, process_mask, process_mask_native
-from utils.torch_utils import select_device, smart_inference_mode
+from quickbrownfoxx.utils.plots import Annotator, colors, save_one_box
+from quickbrownfoxx.utils.segment.general import masks2segments, process_mask, process_mask_native
+from quickbrownfoxx.utils.torch_utils import select_device, smart_inference_mode
 
 
 @smart_inference_mode()
